@@ -1,15 +1,12 @@
 import { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import { UserContext } from "./contexts/user.context";
+import { UserContext } from "./context/user-context";
 
 import Home from "./routes/home/home.component";
 import Navigation from "./routes/navigation/navigation.component";
 import Authentication from "./routes/authentication/authentication.component";
-
-const Shop = () => {
-  return <h1>I am the shop page</h1>;
-};
+import Shop from "./routes/shop/shop.component";
 
 const App = () => {
   const { currentUser } = useContext(UserContext);
