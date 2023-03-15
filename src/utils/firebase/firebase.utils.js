@@ -9,7 +9,6 @@ import {
   signOut,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
-
 const firebaseConfig = {
   apiKey: "AIzaSyBuKeObjtDtxLQSpOi5jr6W6FFOfW0oOQw",
   authDomain: "crown-clothing-db-f5ee7.firebaseapp.com",
