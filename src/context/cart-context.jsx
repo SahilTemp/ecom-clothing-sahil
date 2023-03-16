@@ -3,10 +3,10 @@ import { createContext, useState, useEffect} from "react";
 
 const addCartItem = (cartItems, productToAdd) => {
     const exsitingCartItem = cartItems.find(
-        (cartItem) => cartItem.id == productToAdd.id
+        (cartItem) => cartItem.id === productToAdd.id
     )
     if(exsitingCartItem){
-        return cartItems.map((cartItem) => cartItem.id == productToAdd.id ?
+        return cartItems.map((cartItem) => cartItem.id === productToAdd.id ?
          {...cartItem, quantity: cartItem.quantity + 1} : cartItem
         )
     }
@@ -31,9 +31,13 @@ const changeQuantityMethod = (cartItems, productId, operation) => {
   
     if (findCartItem) {
       if (operation === "Add") {
-        findCartItem.quantity += 1;
+        return cartItems.map((cartItem) => cartItem.id === productId ?
+        {...cartItem, quantity: cartItem.quantity + 1} : cartItem
+       )
       } else if (operation === "Subtract" && findCartItem.quantity > 1) {
-        findCartItem.quantity -= 1;
+        return cartItems.map((cartItem) => cartItem.id === productId ?
+        {...cartItem, quantity: cartItem.quantity - 1} : cartItem
+       )
       }
     }
   
@@ -76,12 +80,10 @@ export const CartContextProvider = ({children}) => {
 
     const changeQuantity = (productId, Operation) => {
         setCartItems(changeQuantityMethod(cartItems, productId, Operation))
-        console.log(cartItems)
     }
 
     const removeItem = (productId) => {
         setCartItems(removeItemLogic(cartItems, productId))
-        console.log(cartItems)
     }
     
 
