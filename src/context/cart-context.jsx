@@ -19,26 +19,73 @@ export const CartContext = createContext({
     setCartDropdown: () => {},
     cartItems: [],
     addItemToCart: () => {},
-    cartCount: 0
+    cartCount: 0,
+    changeQuantity: () => {},
+    total: 0
 })
+
+const changeQuantityMethod = (cartItems, productId, operation) => {
+    const findCartItem = cartItems.find(
+      (cartItem) => cartItem.id === productId
+    );
+  
+    if (findCartItem) {
+      if (operation === "Add") {
+        findCartItem.quantity += 1;
+      } else if (operation === "Subtract" && findCartItem.quantity > 1) {
+        findCartItem.quantity -= 1;
+      }
+    }
+  
+    return cartItems;
+  };
+
+  const removeItemLogic = (cartItems, productId) => {
+    const findCartItem = cartItems.find((cartItem) => cartItem.id === productId);
+  
+    if (findCartItem) {
+      cartItems = cartItems.filter((item) => item.id !== findCartItem.id);
+    }
+  
+    return cartItems;
+  }
 
 
 export const CartContextProvider = ({children}) => {
     const [ cartDropdown, setCartDropdown] = useState(false)
     const [cartItems , setCartItems] = useState([])
     const [cartCount , setCartCount] = useState([])
+    const [total, setTotal] = useState(0)
 
-    useEffect(() => {
+   useEffect(() => {
         const theCount = cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0)
+        let calcTotal = cartItems.map((item) => item.quantity * item.price)
+        const sum = calcTotal.reduce((accumulator, value) => {
+            return accumulator + value;
+          }, 0);
+
         setCartCount(theCount)
-    }, [cartItems])
+        setTotal(sum)
+        console.log(sum)
+        }, [cartItems])
 
     const addItemToCart = (productToAdd) => {
         setCartItems(addCartItem(cartItems,productToAdd))
 
     }
 
-    const value = {cartDropdown, setCartDropdown, cartItems, addItemToCart ,cartCount}
+    const changeQuantity = (productId, Operation) => {
+        setCartItems(changeQuantityMethod(cartItems, productId, Operation))
+        console.log(cartItems)
+    }
+
+    const removeItem = (productId) => {
+        setCartItems(removeItemLogic(cartItems, productId))
+        console.log(cartItems)
+    }
+    
+
+    const value = {cartDropdown, setCartDropdown, cartItems, addItemToCart ,cartCount, changeQuantity, removeItem, total}
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }
 
