@@ -6,18 +6,16 @@ import './checkout-item.styles.scss'
 const CheckoutItem = ({checkoutItem}) => {
     const {id ,name, price, imageUrl, quantity} = checkoutItem
     const {changeQuantity, removeItem} = useContext(CartContext)
-    const addQuantity = () => {
-        console.log("add 1")
+    
+    const addQuantity = () => {     
         changeQuantity(id , "Add")
     }
 
-    const subQuantity = () => {
-        console.log("subtract 1")
+    const subQuantity = () => {     
         changeQuantity(id, "Subtract")
     }
 
     const removeItemHandler = () => {
-        console.log("Item to be Removed")
         removeItem(id)
     }
 

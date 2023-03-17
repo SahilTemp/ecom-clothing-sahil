@@ -70,7 +70,7 @@ export const CartContextProvider = ({children}) => {
 
         setCartCount(theCount)
         setTotal(sum)
-        console.log(sum)
+
         }, [cartItems])
 
     const addItemToCart = (productToAdd) => {
