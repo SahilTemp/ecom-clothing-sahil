@@ -1,7 +1,13 @@
 
-.category-container {
+.shop-sub-category-container {
     display: grid;
     grid-template-columns: repeat(4,1fr);
     column-gap: 20px;
-    row-gap: 50;
+    row-gap: 80px;
+}
+
+.shop-sub-title {
+    font-size: 50px;
+    margin-bottom: 25px;
+    text-align: center;
 }
