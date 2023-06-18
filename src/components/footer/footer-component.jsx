@@ -10,8 +10,8 @@ const Footer = () => {
   ];
 
   const footerLinks = [
-    { name: "Shop", url: "/shop" },
     { name: "Home", url: "/" },
+    { name: "Shop", url: "/shop" },
     { name: "Hat", url: "/shop/hats" },
     { name: "Jacket", url: "/shop/jackets" },
     { name: "Sneakers", url: "/shop/sneakers" },

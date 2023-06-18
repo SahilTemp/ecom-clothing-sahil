@@ -16,7 +16,9 @@ footer {
     .logo-container {
       display: flex;
       align-items: center;
+      justify-items: center;
       flex-basis: 100%;
+      padding-bottom: 20px;
 
       .logo-footer {
         height: 20px;
